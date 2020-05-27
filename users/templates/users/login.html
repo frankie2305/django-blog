@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% if next %}
+        <div class='alert alert-warning'>{{ alert }}</div>
+    {% endif %}
+    <div class="content-section">
+        <form action="" method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{ legend }}</legend>
+                <!-- {{ form }} -->
+                <!-- {{ form.as_p }} -->
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">{{ submit }}</button>
+                <small class="text-muted ml-2">
+                    <a href="{% url 'users:password_reset' %}">Forgot password?</a>
+                </small>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Don't have an account? <a class="ml-2" href="{% url 'users:signup' %}">{{ choice }}</a>
+            </small>
+        </div>
+    </div>
+{% endblock %}

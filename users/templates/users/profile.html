@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+            <img src="{{ user.profile.thumbnail.url }}" alt="Thumbnail" class="rounded-circle account-img">
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
+                <small class="text-muted">
+                    <a href="{% url 'users:password_change' %}">{{ choice }}</a>
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="content-section">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{ legend }}</legend>
+                {{ user_update_form|crispy }}
+                {{ profile_update_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">{{ submit }}</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

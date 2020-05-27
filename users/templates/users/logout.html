@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <p>Thanks for spending some quality time with the website today!</p>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a class="ml-2" href="{% url 'users:login' %}">{{ choice }}</a>
+        </small>
+    </div>
+{% endblock %}
